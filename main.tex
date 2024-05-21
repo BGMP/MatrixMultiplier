@@ -1,0 +1,92 @@
+\documentclass[12pt]{report}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyphenat}
+\usepackage{pgfplots}
+\usepackage[spanish]{cleveref}
+\usepackage[spanish, es-nodecimaldot, es-tabla]{babel}
+\pgfplotsset{compat=1.18}
+
+\graphicspath{{img/}}
+
+\newgeometry{
+  right=3cm,
+  left=3cm,
+  top=2.5cm,
+  bottom=2.5cm
+}
+
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+
+\begin{document}
+  \begin{center}
+    \section*{Tarea 1}
+    
+    Algoritmos y Estructuras de Datos Avanzados / Magister en Cs. de la Computación
+  \end{center}
+  
+  \textbf{Respuestas:}
+  
+  \begin{enumerate}
+    \item Usando las ideas anteriores, generar al azar las
+    matrices A y B (considere matrices de enteros) y
+    completar las siguiente tabla con los tiempos de
+    ejecución1. DR1 usa la primera propiedad, y DR2
+    usa la segunda (prográmelos en el lenguaje que
+    estime conveniente).
+  \end{enumerate}
+  
+  Para la resolución del punto 1, se utilizó el lenguaje de programación \textbf{Python}, con el cual se implementaron el algoritmo tradicional, y los algoritmos identificados como DR1 y DR2 dentro del enunciado.
+  
+  Esta implementación se trata de un programa que permite al usuario definir un número entero ''\textit{n}'', con el cual genera, de manera automática, dos matrices cuadradas de n × n con valores aleatorios. Luego, estas dos matrices son multiplicadas a través de los tres algoritmos ya mencionados. Finalmente, el tiempo de ejecución de cada uno de ellos es mostrado por pantalla para poder compararlos en la tabla a continuación.
+  
+  \begin{center}
+    \begin{tabular}{ | c | p{5.5cm} | p{3.5cm} | p{3.5cm} |}
+      \hline
+      {} & \multicolumn{3}{|c|}{\textbf{Tiempos}} \\
+      \hline
+      \textbf{n} & {\textbf{Algoritmo Tradicional}} & {\textbf{DR1}} & {\textbf{DR2}}\\ \hline
+      {\textbf{32}} & 30 ms & 0 ms & 0 ms \\ \hline
+      {\textbf{64}} & 242 ms & 0 ms & 0 ms \\ \hline
+      {\textbf{128}} & 1925 ms & 2 ms & 1 ms \\ \hline
+      {\textbf{256}} & 15347 ms & 21 ms & 18 ms \\ \hline
+      {\textbf{512}} & 124653 ms & 267 ms & 165 ms \\ \hline
+      {\textbf{1024}} & 1002550 ms & 6928 ms & 3002 ms \\ \hline
+      {\textbf{2048}} & N/A & N/A & N/A \\ \hline
+      {\textbf{4060}} & N/A & N/A & N/A \\ \hline
+    \end{tabular}
+  \end{center}
+  
+  Para efectos de esta tarea, solo se han considerado valores para $ n \leq 1024 $, ya que los tiempos de espera son razonables dentro de ese rango.
+  
+  \begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Obtenga al menos dos conclusiones, respecto del rendimiento de los algoritmos.
+  \end{enumerate}
+  
+  \begin{itemize}
+    \item \textbf{Conclusión 1}: A medida que el orden de las matrices (\textit{n}) aumenta, el rendimiento del algoritmo tradicional se vuelve notablemente peor que el de los algoritmos DR1 y DR2.
+    \item \textbf{Conclusión 2}: Los algoritmos DR1 y DR2 escalan mucho mejor que el algoritmo tradicional, ya que sus tiempos de ejecución crecen mucho más lento a medida que aumenta el orden de las matrices (\textit{n}). Gracias a esto, DR1 y DR2 son mucho mejores para trabajar con matrices de orden mayor.
+  \end{itemize}
+  
+  \newpage
+  
+  \begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Haga un estudio de comportamiento asintótico de los 2 algoritmos que creó.
+  \end{enumerate}
+  
+  \centering
+    \makebox[0pt]{\includegraphics[width=16cm]{DR1_PLOT.png}}
+  
+  \centering
+    \makebox[0pt]{\includegraphics[width=16cm]{DR2_PLOT.png}}
+
+  \centering
+    \makebox[0pt]{\includegraphics[width=16cm]{DR1_DR2_PLOT.png}}
+\end{document}
+
+
