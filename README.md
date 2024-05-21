@@ -28,8 +28,9 @@ Then run the main script:
 python main.py
 ```
 
-The results are saved to a CSV file in the `results/` directory, which are then used to generate graphs with R,
-like the following:
+The results are saved to a CSV file in the `results/` directory, which are then used to generate graphs with R. If you
+want to generate the graphs, simply open `MatrixMultiplier.Rproj` with RStudio and run the script. The generated graphs
+will look as follows:
 
 ![image](img/DR1_DR2_PLOT.png)
 
