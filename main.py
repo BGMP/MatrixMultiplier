@@ -5,7 +5,7 @@ from common import *
 
 import numpy as np
 
-MATRIX_SIZE = 64  # n
+MATRIX_SIZE = 32  # n
 
 
 # Generate random matrix of size n
