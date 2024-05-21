@@ -44,7 +44,7 @@ will look as follows:
 ### R
 - [R 4.0 or above](https://cran.r-project.org/)
 
-## Note
+## Notes
 This project was written as part of the Masters in Computer Science course "Advanced Data Structures and Algorithms" at
 the University of the Bío-Bío.
 
