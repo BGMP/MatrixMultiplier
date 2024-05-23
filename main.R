@@ -11,13 +11,13 @@ plot_DR1 <- ggplot(data, aes(x = n, y = DR1, color = "DR1")) +
   geom_point(size = 2.5, show.legend = TRUE) +     
   geom_line() +                     
   scale_x_continuous(trans = "log10", 
-                     breaks = c(128, 256, 512, 1024), 
+                     breaks = c(32, 64, 128, 256, 512, 1024), 
                      labels = scales::comma,
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(2.1:3.1), "*")
                      }) +  
   scale_y_continuous(trans = "log10", 
-                     breaks = 10^(0:3), limits = c(1, 10000), 
+                     breaks = 10^(0:5), limits = c(1, 1000000), 
                      labels = scales::trans_format("log10", scales::math_format(10^.x)),
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(-0.1:3.1), "*")
@@ -71,13 +71,13 @@ plot_DR2 <- ggplot(data, aes(x = n, y = DR2, color = "DR2")) +
   geom_point(size = 2.5, show.legend = TRUE) +     
   geom_line() +                     
   scale_x_continuous(trans = "log10", 
-                     breaks = c(128, 256, 512, 1024), 
+                     breaks = c(32, 64, 128, 256, 512, 1024), 
                      labels = scales::comma,
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(2.1:3.1), "*")
                      }) +  
   scale_y_continuous(trans = "log10", 
-                     breaks = 10^(0:3), limits = c(1, 10000), 
+                     breaks = 10^(0:5), limits = c(1, 1000000), 
                      labels = scales::trans_format("log10", scales::math_format(10^.x)),
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(-0.1:3.1), "*")
@@ -138,7 +138,7 @@ plot_loglog_square_ticks <- ggplot(data_long, aes(x = n, y = Time, color = Algor
                        outer(1:9, 10^(2.1:3.1), "*")
                      }) +  
   scale_y_continuous(trans = "log10", 
-                     breaks = 10^(0:3), limits = c(1, 10000), 
+                     breaks = 10^(0:5), limits = c(1, 10000), 
                      labels = scales::trans_format("log10", scales::math_format(10^.x)),
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(-0.1:3.1), "*")
