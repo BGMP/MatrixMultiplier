@@ -32,7 +32,7 @@ The results are saved to a CSV file in the `data/` directory, which are then use
 want to generate the graphs, simply open `MatrixMultiplier.Rproj` with RStudio and run the script. The generated graphs
 will look as follows:
 
-![image](img/DR1_DR2_PLOT.png)
+![image](img/TRADITIONAL_DR1_DR2_PLOT.png)
 
 ## Dependencies
 ### Python
