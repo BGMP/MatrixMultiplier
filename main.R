@@ -17,7 +17,7 @@ plot_traditional <- ggplot(data, aes(x = n, y = Tradicional, color = "Tradiciona
                        outer(1:9, 10^(2.1:3.1), "*")
                      }) +  
   scale_y_continuous(trans = "log10", 
-                     breaks = 10^(0:7), limits = c(1, 1000000), 
+                     breaks = 10^(0:7), limits = c(1, 10000000), 
                      labels = scales::trans_format("log10", scales::math_format(10^.x)),
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(-0.1:3.1), "*")
@@ -78,7 +78,7 @@ plot_DR1 <- ggplot(data, aes(x = n, y = DR1, color = "DR1")) +
                        outer(1:9, 10^(2.1:3.1), "*")
                      }) +  
   scale_y_continuous(trans = "log10", 
-                     breaks = 10^(0:7), limits = c(1, 1000000), 
+                     breaks = 10^(0:7), limits = c(1, 10000000), 
                      labels = scales::trans_format("log10", scales::math_format(10^.x)),
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(-0.1:3.1), "*")
@@ -137,7 +137,7 @@ plot_DR2 <- ggplot(data, aes(x = n, y = DR2, color = "DR2")) +
                        outer(1:9, 10^(2.1:3.1), "*")
                      }) +  
   scale_y_continuous(trans = "log10", 
-                     breaks = 10^(0:7), limits = c(1, 1000000), 
+                     breaks = 10^(0:7), limits = c(1, 10000000), 
                      labels = scales::trans_format("log10", scales::math_format(10^.x)),
                      minor_breaks = function(limits) {
                        outer(1:9, 10^(-0.1:3.1), "*")
