@@ -88,36 +88,36 @@
     \makebox[0pt]{\includegraphics[width=15cm]{TRADITIONAL_PLOT.png}}
   \end{center}
     
-  En segundo lugar, tenemos el algoritmo DR1, el cual se trata del ''Divide y Conquista'', o ''Divide and Conquer''. Este algoritmo introduce el concepto de subdividir las matrices que se están multiplicando en matrices más pequeñas y multiplicar estas en lugar de aplicar una multiplicación bruta elemento por elemento, como lo hace el algoritmo tradicional. En el enunciado podemos ver lo siguiente, en donde \textit{A} y \text{B} son las matrices que se están multiplicando, y \textit{C} la matriz producto.
-  
+  En segundo lugar, tenemos el algoritmo DR1, el cual se trata de ''Divide y Conquista'', o ''Divide and Conquer''. Este algoritmo introduce el concepto de subdividir las matrices que se están multiplicando en matrices más pequeñas y multiplicar estas en lugar de aplicar una multiplicación bruta elemento por elemento, como lo hace el algoritmo tradicional. En el enunciado podemos ver lo siguiente, en donde \textit{A} y \text{B} son las matrices que se están multiplicando, y \textit{C} la matriz producto.
+
   \begin{center}
     $ C11 = A_{11} \cdot B_{11} + A_{12} \cdot B_{21} $\\
     $ C12 = A_{11} \cdot B_{12} + A_{12} \cdot B_{22}$\\
     $ C21 = A_{21} \cdot B_{11} + A_{22} \cdot B_{21} $\\
     $ C22 = A_{21} \cdot B_{12} + A_{22} \cdot B_{22} $\\
   \end{center}
-  
-  Si sabemos que la suma de las matrices es de complejidad $O(n^2)$, por lo que la complejidad temporal puede escribirse como:
-  
+
+  Sabemos que la suma de las matrices es de complejidad $O(n^2)$, por lo que la complejidad temporal puede escribirse como:
+
   \begin{center}
     $ T(n) = 8T(n/2) + O(n^2) $
   \end{center}
-  
+
   Aplicando el Teorema Maestro Simple en su tercera opción, obtenemos que:
-  
+
   \begin{center}
     $ T(n) = O(n^{\log_28}) $ \\
     $ T(n) = O(n^3) $
   \end{center}
-  
+
   La complejidad de DR1 es parecida a la del algoritmo tradicional, pero se debe tener en cuenta que esta es la expresión más básica del algoritmo de divide y conquista para este propósito.
-  
+
   \begin{center}
     \makebox[0pt]{\includegraphics[width=15cm]{DR1_PLOT.png}}
   \end{center}
-    
+
   Por último, DR2 representa la implementación del algoritmo de Strassen, el cual lleva un paso más adelante la estrategia de divide y conquista de la siguiente manera:
-  
+
   \begin{center}
     $ M = (A_{11} + A_{22})(B_{11} + B_{22}) $ \\
     $ N = (A_{21} + A_{22})B_{11} $ \\
@@ -131,32 +131,30 @@
     $ C_{21} = N + P $ \\
     $ C_{22} = M + O - N + R $
   \end{center}
-  
+
   El algoritmo de Strassen también divide las matrices, pero éste elimina una de las llamadas recursivas, quedando únicamente en 7.
-  
+
   La complejidad temporal de este algoritmo es entonces:
-  
+
   \begin{center}
       $ T(n) = 7T(n/2) +  O(n^2) $
   \end{center}
 
-  
+
   Por Teorema Maestro Simple, opción 3:
-  
+
   \begin{center}
     $ O(n^{Log7}) \approx O(n^{2.8074}) $
   \end{center}
-  
+
   \centering
     \makebox[0pt]{\includegraphics[width=15cm]{DR2_PLOT.png}}
 
-  Para finalizar, se muestra una vista comparativa entre DR1 y DR2, y en segundo lugar una comparación general de esos dos con el algoritmo tradicional.
+  Por último, se muestra una vista comparativa entre DR1 y DR2, y en segundo lugar una comparación general de esos dos con el algoritmo tradicional.
 
   \centering
     \makebox[0pt]{\includegraphics[width=15cm]{DR1_DR2_PLOT.png}}
-    
+
   \centering
     \makebox[0pt]{\includegraphics[width=15cm]{TRADITIONAL_DR1_DR2_PLOT.png}}
 \end{document}
-
-
