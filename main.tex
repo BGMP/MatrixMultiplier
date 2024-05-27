@@ -49,18 +49,18 @@
       {} & \multicolumn{3}{|c|}{\textbf{Tiempos}} \\
       \hline
       \textbf{n} & {\textbf{Algoritmo Tradicional}} & {\textbf{DR1}} & {\textbf{DR2}}\\ \hline
-      {\textbf{32}} & 30 ms & 0 ms & 0 ms \\ \hline
-      {\textbf{64}} & 242 ms & 0 ms & 0 ms \\ \hline
-      {\textbf{128}} & 1925 ms & 2 ms & 1 ms \\ \hline
-      {\textbf{256}} & 15347 ms & 21 ms & 18 ms \\ \hline
-      {\textbf{512}} & 124653 ms & 267 ms & 165 ms \\ \hline
-      {\textbf{1024}} & 1002550 ms & 6928 ms & 3002 ms \\ \hline
+      {\textbf{32}} & 32 ms & 30 ms & 28 ms \\ \hline
+      {\textbf{64}} & 246 ms & 252 ms & 198 ms \\ \hline
+      {\textbf{128}} & 2008 ms & 2014 ms & 1478 ms \\ \hline
+      {\textbf{256}} & 15695 ms & 16010 ms & 9760 ms \\ \hline
+      {\textbf{512}} & 127683 ms & 131425 ms & 69556 ms \\ \hline
+      {\textbf{1024}} & 1018224 ms & 1033092 ms & 476695 ms \\ \hline
       {\textbf{2048}} & N/A & N/A & N/A \\ \hline
       {\textbf{4060}} & N/A & N/A & N/A \\ \hline
     \end{tabular}
   \end{center}
-  
-  Para efectos de esta tarea, solo se han considerado valores para $ n \leq 1024 $, ya que los tiempos de espera son razonables dentro de ese rango.
+
+  Para efectos de esta tarea, solo se han considerado valores para $ n \leq 1024 $, ya que los tiempos de espera son razonables dentro de ese rango. El caso base considerado para los algoritmos DR1 y DR2 fue de $n = 16$.
   
   \begin{enumerate}
     \setcounter{enumi}{1}
@@ -85,7 +85,7 @@
   En primer lugar, tenemos el algoritmo tradicional, el cual posee una complejidad de $ O(n^3) $.
 
   \begin{center}
-    \makebox[0pt]{\includegraphics[width=15cm]{TRADITIONAL_PLOT.png}}
+    \makebox[0pt]{\includegraphics[width=15cm]{img/TRADITIONAL_PLOT}}
   \end{center}
     
   En segundo lugar, tenemos el algoritmo DR1, el cual se trata de ''Divide y Conquista'', o ''Divide and Conquer''. Este algoritmo introduce el concepto de subdividir las matrices que se están multiplicando en matrices más pequeñas y multiplicar estas en lugar de aplicar una multiplicación bruta elemento por elemento, como lo hace el algoritmo tradicional. En el enunciado podemos ver lo siguiente, en donde \textit{A} y \text{B} son las matrices que se están multiplicando, y \textit{C} la matriz producto.

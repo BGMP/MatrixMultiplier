@@ -5,7 +5,7 @@ from common import *
 
 import numpy as np
 
-MATRIX_SIZE = 32  # n
+MATRIX_SIZE = [32, 64, 128, 256, 512, 1024]  # n
 
 
 # Generate random matrix of size n
@@ -35,15 +35,30 @@ def traditional_multiplication(matrix, other):
 # The algorithm described by Property 1, which we will name DR1 (Divide and Conquer)
 def dr1_multiplication(matrix, other):
     n = len(matrix)
+
+    # Base case for recursion: if the matrix size is 8, directly calculate the product
+    if n <= 16:
+        return traditional_multiplication(matrix, other)
+
     m = n // 2
-    A11, A12, A21, A22 = matrix[:m, :m], matrix[:m, m:], matrix[m:, :m], matrix[m:, m:]
-    B11, B12, B21, B22 = other[:m, :m], other[:m, m:], other[m:, :m], other[m:, m:]
 
-    C11 = A11.dot(B11) + A12.dot(B21)
-    C12 = A11.dot(B12) + A12.dot(B22)
-    C21 = A21.dot(B11) + A22.dot(B21)
-    C22 = A21.dot(B12) + A22.dot(B22)
+    # Divide matrices into submatrices (no slicing for recursive call)
+    A11 = matrix[:m, :m]
+    A12 = matrix[:m, m:]
+    A21 = matrix[m:, :m]
+    A22 = matrix[m:, m:]
+    B11 = other[:m, :m]
+    B12 = other[:m, m:]
+    B21 = other[m:, :m]
+    B22 = other[m:, m:]
 
+    # Recursively calculate products of submatrices
+    C11 = dr1_multiplication(A11, B11) + dr1_multiplication(A12, B21)
+    C12 = dr1_multiplication(A11, B12) + dr1_multiplication(A12, B22)
+    C21 = dr1_multiplication(A21, B11) + dr1_multiplication(A22, B21)
+    C22 = dr1_multiplication(A21, B12) + dr1_multiplication(A22, B22)
+
+    # Combine the results to get the final matrix
     C = np.block([[C11, C12], [C21, C22]])
     return C
 
@@ -51,18 +66,33 @@ def dr1_multiplication(matrix, other):
 # The algorithm described by Property 2, which we will name DR2 (Strassen's algorithm)
 def dr2_multiplication(matrix, other):
     n = len(matrix)
+
+    # Base case for recursion: if the matrix size is 8, directly calculate the product
+    if n <= 16:
+        return traditional_multiplication(matrix, other)
+
     m = n // 2
-    A11, A12, A21, A22 = matrix[:m, :m], matrix[:m, m:], matrix[m:, :m], matrix[m:, m:]
-    B11, B12, B21, B22 = other[:m, :m], other[:m, m:], other[m:, :m], other[m:, m:]
 
-    M = (A11 + A22).dot(B11 + B22)
-    N = (A21 + A22).dot(B11)
-    O = A11.dot(B12 - B22)
-    P = A22.dot(B21 - B11)
-    Q = (A11 + A12).dot(B22)
-    R = (A21 - A11).dot(B11 + B12)
-    S = (A12 - A22).dot(B21 + B22)
+    # Divide matrices into submatrices (no slicing for recursive call)
+    A11 = matrix[:m, :m]
+    A12 = matrix[:m, m:]
+    A21 = matrix[m:, :m]
+    A22 = matrix[m:, m:]
+    B11 = other[:m, :m]
+    B12 = other[:m, m:]
+    B21 = other[m:, :m]
+    B22 = other[m:, m:]
 
+    # Recursively calculate the Strassen's products
+    M = dr2_multiplication(A11 + A22, B11 + B22)
+    N = dr2_multiplication(A21 + A22, B11)
+    O = dr2_multiplication(A11, B12 - B22)
+    P = dr2_multiplication(A22, B21 - B11)
+    Q = dr2_multiplication(A11 + A12, B22)
+    R = dr2_multiplication(A21 - A11, B11 + B12)
+    S = dr2_multiplication(A12 - A22, B21 + B22)
+
+    # Combine the results to get the final matrix
     C11 = M + P - Q + S
     C12 = O + Q
     C21 = N + P
@@ -73,7 +103,7 @@ def dr2_multiplication(matrix, other):
 
 
 # Measure execution time for the given algorithm
-def measure_time(algorithm, matrix, other):
+def measure_time_ms(algorithm, matrix, other):
     start = datetime.datetime.now()
     algorithm(matrix, other)
     end = datetime.datetime.now()
@@ -81,27 +111,35 @@ def measure_time(algorithm, matrix, other):
 
 
 def main():
-    m1 = generate_matrix(MATRIX_SIZE)
-    m2 = generate_matrix(MATRIX_SIZE)
-
-    result_traditional = traditional_multiplication(m1, m2)
-    result_dr1 = dr1_multiplication(m1, m2)
-    result_dr2 = dr2_multiplication(m1, m2)
-
-    traditional_time = measure_time(traditional_multiplication, m1, m2)
-    dr1_time = measure_time(dr1_multiplication, m1, m2)
-    dr2_time = measure_time(dr2_multiplication, m1, m2)
-
-    # Save results to CSV
+    # Create a CSV file to store the results
     os.makedirs(DATA_DIR, exist_ok=True)
     file_path = os.path.join(DATA_DIR, "results.csv")
-    with open(file_path, "a", newline="") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow([MATRIX_SIZE, traditional_time, dr1_time, dr2_time])
 
-    print(f"Traditional: {traditional_time} ms")
-    print(f"Property 1: {dr1_time} ms")
-    print(f"Property 2: {dr2_time} ms")
+    for size in MATRIX_SIZE:
+        m1 = generate_matrix(size)
+        m2 = generate_matrix(size)
+
+        print(f"Matrix size: {size}x{size}")
+
+        print("Calculating time for traditional ...")
+        traditional_time = measure_time_ms(traditional_multiplication, m1, m2)
+        print(f"Traditional: {traditional_time}ms")
+
+        print("Calculating time for DR1 ...")
+        dr1_time = measure_time_ms(dr1_multiplication, m1, m2)
+        print(f"Property 1: {dr1_time}ms")
+
+        print("Calculating time for DR2 ...")
+        dr2_time = measure_time_ms(dr2_multiplication, m1, m2)
+        print(f"Property 2: {dr2_time}ms")
+
+        # Save results to CSV
+        print(f"Writing results to disk ...")
+        with open(file_path, "a", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([size, traditional_time, dr1_time, dr2_time])
+
+        print(f"OK.")
 
 
 if __name__ == "__main__":

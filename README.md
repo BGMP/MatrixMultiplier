@@ -12,11 +12,12 @@ The project is written in Python and uses the `numpy` library for matrix operati
 ## Running
 At the top of `main.py`, you will find the following:
 ```python
-MATRIX_SIZE = 32  # n
+MATRIX_SIZE = [32, 64, 128, 256, 512, 1024] # n
 ```
 
-You may modify the *n* value to change the size of the matrices to be multiplied. The program will generate two random
-matrices of size *n* x *n* and multiply them using the three algorithms mentioned above.
+You may modify the *n* values to change the size of the matrices to be multiplied. The program will generate two random
+matrices of size *n* x *n* for each of the values you provide, and then multiply them using the three algorithms
+mentioned above. 
 
 To run the program, first install the dependencies:
 ```bash
